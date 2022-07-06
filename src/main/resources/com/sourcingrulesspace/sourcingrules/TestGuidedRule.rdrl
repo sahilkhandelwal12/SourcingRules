@@ -1,9 +1,15 @@
 package com.sourcingrulesspace.sourcingrules;
 
 import java.lang.Number;
+import com.aws.omm.domain.customerorder.Item;
+import com.aws.omm.domain.customerorder.ShameItems;
+import com.aws.omm.domain.customerorder.CustomerOrderEntry;
 
 rule "TestGuidedRule"
 	dialect "mvel"
+	ruleflow-group "homedeliveryrulegroup"
 	when
+		customerOrderEntry : CustomerOrderEntry( brand == "tata" || countOfSKUs > 5 )
 	then
+		customerOrderEntry.setHomeDelivery( true );
 end
