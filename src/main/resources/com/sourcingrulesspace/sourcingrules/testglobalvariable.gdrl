@@ -1,2 +1,3 @@
 package com.sourcingrulesspace.sourcingrules;
 
+global java.lang.Double skucount;
