@@ -1,0 +1,9 @@
+package com.sourcingrulesspace.sourcingrules;
+
+import java.lang.Number;
+
+rule "TestGuidedRule"
+	dialect "mvel"
+	when
+	then
+end
