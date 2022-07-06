@@ -1,2 +1,10 @@
 package com.sourcingrulesspace.sourcingrules;
 
+import com.aws.omm.domain.customerorder.CustomerOrderEntry;
+
+rule "TestGDT_0"
+	when 
+		customerOrderEntry : CustomerOrderEntry(countOfSKUs > 5, dept == "Luxury")
+	then 
+		customerOrderEntry.setHomeDelivery( false );
+end
