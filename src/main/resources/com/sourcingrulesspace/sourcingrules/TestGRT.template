@@ -7,19 +7,37 @@
     <fact>
       <constraintList>
         <constraints>
-          <fieldConstraint>
-            <value>$brandname</value>
-            <operator>==</operator>
-            <constraintValueType>7</constraintValueType>
-            <expression>
-              <parts/>
-              <index>2147483647</index>
-            </expression>
-            <parameters/>
-            <factType>CustomerOrderEntry</factType>
-            <fieldName>brand</fieldName>
-            <fieldType>String</fieldType>
-          </fieldConstraint>
+          <compositeConstraint>
+            <compositeJunctionType>||</compositeJunctionType>
+            <constraints>
+              <fieldConstraint>
+                <value>$brand</value>
+                <operator>==</operator>
+                <constraintValueType>7</constraintValueType>
+                <expression>
+                  <parts/>
+                  <index>2147483647</index>
+                </expression>
+                <parameters/>
+                <factType>CustomerOrderEntry</factType>
+                <fieldName>brand</fieldName>
+                <fieldType>String</fieldType>
+              </fieldConstraint>
+              <fieldConstraint>
+                <value>$skuCOunt</value>
+                <operator>&gt;</operator>
+                <constraintValueType>7</constraintValueType>
+                <expression>
+                  <parts/>
+                  <index>2147483647</index>
+                </expression>
+                <parameters/>
+                <factType>CustomerOrderEntry</factType>
+                <fieldName>countOfSKUs</fieldName>
+                <fieldType>Integer</fieldType>
+              </fieldConstraint>
+            </constraints>
+          </compositeConstraint>
         </constraints>
       </constraintList>
       <factType>CustomerOrderEntry</factType>
@@ -31,22 +49,31 @@
     </fact>
   </lhs>
   <rhs>
-    <setField>
+    <modify>
       <fieldValues>
         <fieldValue>
           <field>homeDelivery</field>
-          <value>$isHomedelivery</value>
+          <value>$isHomeDeliveryAllowed</value>
           <nature>7</nature>
           <type>Boolean</type>
         </fieldValue>
       </fieldValues>
       <variable>customerorderentry</variable>
-    </setField>
+    </modify>
   </rhs>
   <imports>
     <imports>
       <org.kie.soup.project.datamodel.imports.Import>
         <type>com.aws.omm.domain.customerorder.CustomerOrderAggregation</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>com.aws.omm.domain.customerorder.CapacityDetails</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>com.aws.omm.domain.customerorder.ShameItems</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>com.aws.omm.domain.customerorder.Item</type>
       </org.kie.soup.project.datamodel.imports.Import>
       <org.kie.soup.project.datamodel.imports.Import>
         <type>com.aws.omm.domain.customerorder.CustomerOrderEntry</type>
@@ -61,11 +88,15 @@
       <list/>
     </entry>
     <entry>
-      <string>$isHomedelivery</string>
+      <string>$skuCOunt</string>
       <list/>
     </entry>
     <entry>
-      <string>$brandname</string>
+      <string>$brand</string>
+      <list/>
+    </entry>
+    <entry>
+      <string>$isHomeDeliveryAllowed</string>
       <list/>
     </entry>
   </table>
